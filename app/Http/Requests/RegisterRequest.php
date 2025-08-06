@@ -20,6 +20,14 @@ class RegisterRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'name' => ucwords(strtolower($this->name)),
+            'email' => strtolower($this->email)
+        ]);
+    }
+
     public function rules(): array
     {
         return [
@@ -28,7 +36,8 @@ class RegisterRequest extends FormRequest
                 'required',
                 'string',
                 'min:3',
-                'max:20'
+                'max:20',
+                'regex:/^[a-zA-ZÀ-ÿ\s]+$/u'
             ],
 
             // Email
@@ -47,7 +56,7 @@ class RegisterRequest extends FormRequest
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    // ->uncompromised()
+                // ->uncompromised()
             ],
         ];
     }
