@@ -8,6 +8,14 @@
     <title>@yield('title_page', 'Default')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,20 +27,24 @@
     <script>
         const themeSwitch = document.getElementById('themeSwitch');
         const htmlElement = document.documentElement;
+        const txtLabel = document.getElementById('txtLabel');
 
         function applySavedTheme() {
             const savedTheme = localStorage.getItem('theme');
             const isDark = savedTheme === 'dark';
             htmlElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
             themeSwitch.checked = isDark;
+            txtLabel.textContent = isDark ? 'Light Mode' : 'Dark Mode';
         }
 
         applySavedTheme();
 
         themeSwitch.addEventListener('change', function () {
             const newTheme = this.checked ? 'dark' : 'light';
+            const txt = this.checked ? 'Light Mode' : 'Dark Mode';
             htmlElement.setAttribute('data-bs-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            txtLabel.textContent = txt;
         });
     </script>
 </body>

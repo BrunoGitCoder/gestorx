@@ -1,10 +1,9 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Login
 Route::get('/login', [AppController::class, 'showFormLogin'])->name('login');
 
-// Register
-Route::get('/register', [AppController::class, 'showFormRegister'])->name('register');
+Route::resource('users', UserController::class);

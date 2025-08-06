@@ -47,7 +47,7 @@ class RegisterRequest extends FormRequest
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    ->uncompromised(),
+                    // ->uncompromised()
             ],
         ];
     }
@@ -69,8 +69,8 @@ class RegisterRequest extends FormRequest
             // Password
             'password.required' => 'The password field is required.',
             'password.confirmed' => 'The password confirmation does not match.',
-            'password.*' => 'Your password must be between :min and :max characters, include both uppercase and lowercase letters, contain at least one number and one special character, and must not be found in known data breaches.',
             'password.uncompromised' => 'This password has appeared in a data breach. Please choose a different one.',
+            'password.*' => 'Your password must be between 8 and 30 characters, include both uppercase and lowercase letters, contain at least one number and one special character, and must not be found in known data breaches.',
         ];
     }
 
