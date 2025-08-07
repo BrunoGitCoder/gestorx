@@ -105,14 +105,16 @@
                                     id="descricao" class="form-control @error('description') is-invalid @enderror"" id="
                                     validationTextarea" aria-describedby="inputGroupPrepend3 validationDescriptionFeedback"
                                     placeholder="Required example textarea">{{ old('description') }}</textarea>
-                                <div class="d-flex justify-content-end m-0 p-0">
-                                    <p class="m-0" id="contador">0 / 255</p>
-                                </div>
-                                @error('description')
-                                    <div id="validationDescriptionFeedback" class="invalid-feedback">
-                                        {{ $message }}
+                                <div class="p-0 m-0"> 
+                                    @error('description')
+                                        <div id="validationDescriptionFeedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <div class="d-flex justify-content-end m-0 p-0">
+                                        <p class="m-0" id="contador">0 / 255</p>
                                     </div>
-                                @enderror
+                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
                                 <button type="submmit" class="btn btn-outline-success" data-bs-toggle="modal"
