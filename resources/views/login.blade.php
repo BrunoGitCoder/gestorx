@@ -6,7 +6,7 @@
     <div class="vh-100 d-flex justify-content-center align-items-center flex-column gap-4">
         <div class="d-flex justify-content-center align-items-center">
             {{-- Colocar logo aqui dentro--}}
-            <h1 class="logo" style="font-size: 5rem" style="user-select: none;">Gestor</h1>
+            <h1 class="logo" style="font-size: 5rem">Gestor</h1>
             <h1 class="logo text-primary fw-bold" style="font-size: 7rem">X</h1>
         </div>
         <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">

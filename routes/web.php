@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,4 +16,5 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [AppController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'authLogout'])->name('auth.logout');
+    Route::resource('projects', ProjectController::class);
 });

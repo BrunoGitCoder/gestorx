@@ -21,7 +21,7 @@ class RegisterRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     protected function prepareForValidation()
-    {
+    {   
         $this->merge([
             'name' => ucwords(strtolower($this->name)),
             'email' => strtolower($this->email)

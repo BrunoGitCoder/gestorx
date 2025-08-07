@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="d-flex flex-row flex-wrap gap-3 mt-4 justify-content-center align-items-center mb-5">
-        @for ($i = 1; $i <= 3; $i++)
+        @foreach($projects as $project)
             <div class="card border-secondary shadow-sm" style="width: 18rem;">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span class="fw-semibold">Projeto #{{ $i }}</span>
+                    <span class="fw-semibold">Project</span>
                     <span class="badge bg-gradient text-white px-2 py-1"
                         style="background: linear-gradient(135deg, #6c757d, #495057); font-size: 0.75rem;">
                         Ativo
@@ -16,20 +16,18 @@
 
                 <div class="card-body text-secondary d-flex flex-column justify-content-between" style="min-height: 170px;">
                     <div>
-                        <h5 class="card-title">GestorX CRM</h5>
+                        <h5 class="card-title">{{ $project->title }}</h5>
                         <p class="card-text text-truncate">
-                            Sistema de gestão de clientes com integração de tarefas e equipe.
-                            Sistema de gestão de clientes com integração de tarefas e equipe.
-                            Sistema de gestão de clientes com integração de tarefas e equipe.
+                            {{ $project->description }}
                         </p>
                     </div>
 
                     <button class="btn btn-sm btn-outline-secondary mb-2" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#tasks-{{ $i }}">
+                        data-bs-target="#tasks-{{$project->id}}">
                         <i class="bi bi-chevron-down me-1"></i> Mostrar Tarefas
                     </button>
 
-                    <div class="collapse" id="tasks-{{ $i }}">
+                    <div class="collapse" id="tasks-{{$project->id}}">
                         <ul class="list-group list-group-flush mb-2">
                             @for ($x = 1; $x <= rand(2, 5); $x++)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -60,8 +58,7 @@
                     <small>Atualizado há 3 min</small>
                 </div>
             </div>
-
-        @endfor
+        @endforeach
 
         {{-- Card New Project --}}
         <div class="card border-dashed text-center shadow-sm"
@@ -78,7 +75,6 @@
                         </svg></span>
                     <strong>New Project</strong>
                 </button>
-
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow-sm">
-    <div class="container-fluid">
+    <div class="container-fluid ps-5 pe-5">
         <a class="navbar-brand fw-bold" href="/">
             <div class="d-flex justify-content-center align-items-center">
                 {{-- Colocar logo aqui dentro--}}
@@ -15,10 +15,10 @@
 
         {{-- Conteúdo da navbar --}}
         <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="/projetos">Projetos</a></li>
-                <li class="nav-item"><a class="nav-link" href="/equipe">Equipe</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('projects.index') }}">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="/equipe">Team</a></li>
             </ul>
 
             {{-- Área de usuário e tema --}}
@@ -41,6 +41,9 @@
                             </form>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
                 </li>
                 {{-- Botão de tema --}}
                 <li class="nav-item d-flex align-items-center">
