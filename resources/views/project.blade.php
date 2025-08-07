@@ -67,12 +67,11 @@
                 <i class="bi bi-plus-circle fs-1 text-primary mb-3"></i>
                 <h5 class="card-title mb-2">Start a New Project</h5>
                 <p class="card-text text-muted">Kick off your task organization with a fresh project.</p>
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-                        </svg></span>
+                <button type="button" class="btn btn-outline-primary d-flex flex-row gap-1" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    <span class="d-flex justify-content-center align-items-center">
+                        <x-lucide-diamond-plus style="height: 18px; width: 18px;" />
+                    </span>
                     <strong>New Project</strong>
                 </button>
             </div>
@@ -96,11 +95,7 @@
                                 <label for="title" class="form-label">Title</label>
                                 <div class="input-group @error('title') has-validation @enderror">
                                     <span class="input-group-text" id="inputGroupPrepend3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-tag-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-                                        </svg>
+                                        <x-lucide-tag style="height: 18px; width: 18px;" />
                                     </span>
                                     <input name="title" type="text"
                                         class="form-control @error('title') is-invalid @enderror" id="title"
@@ -115,8 +110,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="validationTextarea" class="form-label">Description</label>
-                                <textarea maxlength="255" oninput="atualizarContador()" rows="5" name="description" id="descricao"
-                                    class="form-control @error('description') is-invalid @enderror"" id="
+                                <textarea maxlength="255" oninput="atualizarContador()" rows="5" name="description"
+                                    id="descricao" class="form-control @error('description') is-invalid @enderror"" id="
                                     validationTextarea" aria-describedby="inputGroupPrepend3 validationDescriptionFeedback"
                                     placeholder="Required example textarea">{{ old('description') }}</textarea>
                                 <div class="d-flex justify-content-end m-0 p-0">
@@ -132,15 +127,8 @@
                                 <button type="submmit" class="btn btn-outline-success" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                     <div class="d-flex justify-content-center align-items-center gap-1">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor"
-                                                class="bi bi-floppy2-fill d-flex justify-content-center align-items-center"
-                                                viewBox="0 0 16 16">
-                                                <path d="M12 2h-2v3h2z" />
-                                                <path
-                                                    d="M1.5 0A1.5 1.5 0 0 0 0 1.5v13A1.5 1.5 0 0 0 1.5 16h13a1.5 1.5 0 0 0 1.5-1.5V2.914a1.5 1.5 0 0 0-.44-1.06L14.147.439A1.5 1.5 0 0 0 13.086 0zM4 6a1 1 0 0 1-1-1V1h10v4a1 1 0 0 1-1 1zM3 9h10a1 1 0 0 1 1 1v5H2v-5a1 1 0 0 1 1-1" />
-                                            </svg>
+                                        <span class="d-flex">
+                                            <x-lucide-save style="height: 18px; width: 18px;" />
                                         </span>
                                         <strong>Add Project</strong>
                                     </div>
@@ -150,15 +138,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-outline-danger" style="height: 40px; width: 40px;" data-bs-dismiss="modal">
                         <div class="d-flex justify-content-center align-items-center gap-1">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-trash3-fill d-flex justify-content-center align-items-center"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                                </svg>
+                            <span class="d-flex">
+                                <x-lucide-trash style="height: 18px; width: 18px;" />
                             </span>
                             {{-- <span>
                                 Abort
