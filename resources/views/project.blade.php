@@ -17,39 +17,30 @@
                 <div class="card-body text-secondary d-flex flex-column justify-content-between" style="min-height: 170px;">
                     <div>
                         <h5 class="card-title">{{ $project->title }}</h5>
-                        <p class="card-text text-truncate">
+                        <p id="p-desc-{{$project->id}}" class="card-text text-truncate p-0 m-0">
                             {{ $project->description }}
                         </p>
                     </div>
 
-                    <button class="btn btn-sm btn-outline-secondary mb-2" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#tasks-{{$project->id}}">
+
+                    <button class="position-relative btn btn-sm btn-outline-secondary mb-2" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#tasks-{{$project->id}}">
                         <i class="bi bi-chevron-down me-1"></i> Mostrar Tarefas
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                            4
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
                     </button>
 
                     <div class="collapse" id="tasks-{{$project->id}}">
-                        <ul class="list-group list-group-flush mb-2">
-                            @for ($x = 1; $x <= rand(2, 5); $x++)
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>Tarefa {{ $x }}</span>
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <form action="" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-outline-success" title="Marcar como feita">
-                                                <i class="bi bi-check2">O</i>
-                                            </button>
-                                        </form>
-                                        <form action="" method="POST"
-                                            onsubmit="return confirm('Tem certeza que deseja excluir esta tarefa?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger" title="Excluir tarefa">
-                                                <i class="bi bi-trash">X</i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </li>
-                            @endfor
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value=""
+                                    id="firstCheckboxStretched{{$project->id}}">
+                                <label class="form-check-label stretched-link" for="firstCheckboxStretched{{$project->id}}">
+                                    Teste
+                                </label>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -138,7 +129,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" style="height: 40px; width: 40px;" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-outline-danger" style="height: 40px; width: 40px;"
+                        data-bs-dismiss="modal">
                         <div class="d-flex justify-content-center align-items-center gap-1">
                             <span class="d-flex">
                                 <x-lucide-trash style="height: 18px; width: 18px;" />
@@ -169,5 +161,4 @@
             });
         </script>
     @endif
-
 @endsection

@@ -26,7 +26,7 @@ class ProjectRequest extends FormRequest
     {
         $this->merge([
             'user_id' => Auth::user()->id,
-            'title' => ucwords(strtolower($this->title)),
+            'title' => ucwords($this->title),
             'description' => ucfirst($this->description)
         ]);
     }
