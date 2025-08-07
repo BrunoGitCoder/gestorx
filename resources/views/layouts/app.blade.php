@@ -19,34 +19,69 @@
 </head>
 
 <body>
+    @auth
+        @include('layouts.navbar')
+    @endauth
+
     @yield('content')
 
+    {{-- Bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
+
+    {{-- Light / Dark theme switch --}}
     <script>
-        const themeSwitch = document.getElementById('themeSwitch');
-        const htmlElement = document.documentElement;
-        const txtLabel = document.getElementById('txtLabel');
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const lightRadio = document.getElementById('btnradio1');
+            const darkRadio = document.getElementById('btnradio2');
+            const lightLabel = document.querySelector('label[for="btnradio1"]');
+            const darkLabel = document.querySelector('label[for="btnradio2"]');
 
-        function applySavedTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const isDark = savedTheme === 'dark';
-            htmlElement.setAttribute('data-bs-theme', isDark ? 'dark' : 'light');
-            themeSwitch.checked = isDark;
-            txtLabel.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-        }
+            // Função para atualizar classes dos botões
+            function updateButtonStyles(theme) {
+                if (theme === 'light') {
+                    lightLabel.classList.remove('btn-outline-secondary');
+                    lightLabel.classList.add('btn-outline-primary');
+                    darkLabel.classList.remove('btn-outline-secondary');
+                    darkLabel.classList.add('btn-outline-primary');
+                } else {
+                    lightLabel.classList.remove('btn-outline-secondary');
+                    lightLabel.classList.add('btn-outline-secondary');
+                    darkLabel.classList.remove('btn-outline-secondary');
+                    darkLabel.classList.add('btn-outline-secondary');
+                }
+            }
 
-        applySavedTheme();
+            // Verifica tema salvo ou define padrão
+            const savedTheme = localStorage.getItem('bsTheme') || 'dark';
+            html.setAttribute('data-bs-theme', savedTheme);
 
-        themeSwitch.addEventListener('change', function () {
-            const newTheme = this.checked ? 'dark' : 'light';
-            const txt = this.checked ? 'Light Mode' : 'Dark Mode';
-            htmlElement.setAttribute('data-bs-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            txtLabel.textContent = txt;
+            // Marca o botão e atualiza estilos
+            if (savedTheme === 'light') {
+                lightRadio.checked = true;
+            } else {
+                darkRadio.checked = true;
+            }
+            updateButtonStyles(savedTheme);
+
+            // Escuta mudanças
+            lightRadio.addEventListener('change', () => {
+                html.setAttribute('data-bs-theme', 'light');
+                localStorage.setItem('bsTheme', 'light');
+                updateButtonStyles('light');
+            });
+
+            darkRadio.addEventListener('change', () => {
+                html.setAttribute('data-bs-theme', 'dark');
+                localStorage.setItem('bsTheme', 'dark');
+                updateButtonStyles('dark');
+            });
         });
     </script>
+
+
 </body>
 
 </html>

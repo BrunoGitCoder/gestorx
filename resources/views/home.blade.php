@@ -1,1 +1,4 @@
-<h1>homepage</h1>
+@extends('layouts.app')
+
+@section('title_page', 'GestorX')
+

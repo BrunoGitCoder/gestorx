@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
 use App\Services\AuthService;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,10 +18,19 @@ class AuthController extends Controller
     public function authLogin(AuthRequest $request)
     {
         if ($this->authService->authLogin($request)) {
-            return redirect()->route('login')->with('success', 'Login');
+            return redirect()->route('home');
+        } else {
+            return redirect()->back()->with('error', 'Authentication error. Invalid email or password.');
         }
-        else {
-            return redirect()->route('login')->with('success', 'Erro');
-        }
+    }
+
+    public function authLogout()
+    {
+        $name = Auth::user()->name;
+        $this->authService->authLogout();
+        return redirect()->route('login')->with([
+            'success' => 'Logout completed successfully.',
+            'user_name'=> $name
+        ]);
     }
 }

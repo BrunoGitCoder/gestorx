@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center flex-column p-4">
-        <div class="d-flex justify-content-center align-items-center">
-            {{-- Colocar logo aqui dentro--}}
+        <div class="d-flex justify-content-center align-items-center m-5">
             <h1 class="" style="font-size: 5rem">Gestor</h1>
             <h1 class="text-primary fw-bold" style="font-size: 7rem">X</h1>
         </div>
@@ -88,10 +87,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="form-check form-switch m-5">
-            <input class="form-check-input" type="checkbox" id="themeSwitch">
-            <label class="form-check-label" for="themeSwitch" id="txtLabel">Dark Mode</label>
         </div>
     </div>
 @endsection

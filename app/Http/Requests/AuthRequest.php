@@ -30,6 +30,10 @@ class AuthRequest extends FormRequest
             'password' => [
                 'required',
                 'string'
+            ],
+
+            'remember' => [
+                'nullable',
             ]
         ];
     }

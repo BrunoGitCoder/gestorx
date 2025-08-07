@@ -10,11 +10,19 @@ class AuthService
     public function authLogin(AuthRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        $remember = $request->boolean('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
+    }
+
+    public function authLogout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
     }
 }
