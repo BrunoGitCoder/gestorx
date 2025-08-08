@@ -5,50 +5,11 @@
 @section('content')
     <div class="d-flex flex-row flex-wrap gap-3 mt-4 justify-content-center align-items-center mb-5">
         @foreach($projects as $project)
-            <div class="card border-secondary shadow-sm" style="width: 18rem;">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span class="fw-semibold">Project</span>
-                    <span class="badge bg-gradient text-white px-2 py-1"
-                        style="background: linear-gradient(135deg, #6c757d, #495057); font-size: 0.75rem;">
-                        Ativo
-                    </span>
-                </div>
-
-                <div class="card-body text-secondary d-flex flex-column justify-content-between" style="min-height: 170px;">
-                    <div>
-                        <h5 class="card-title">{{ $project->title }}</h5>
-                        <p id="p-desc-{{$project->id}}" class="card-text text-truncate p-0 m-0">
-                            {{ $project->description }}
-                        </p>
-                    </div>
-
-
-                    <button class="position-relative btn btn-sm btn-outline-secondary mb-2" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#tasks-{{$project->id}}">
-                        <i class="bi bi-chevron-down me-1"></i> Mostrar Tarefas
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                            4
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    </button>
-
-                    <div class="collapse" id="tasks-{{$project->id}}">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value=""
-                                    id="firstCheckboxStretched{{$project->id}}">
-                                <label class="form-check-label stretched-link" for="firstCheckboxStretched{{$project->id}}">
-                                    Teste
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card-footer text-muted text-end">
-                    <small>Atualizado há 3 min</small>
-                </div>
-            </div>
+            @include('layouts.projectCard',[
+                'title' => $project->title,
+                'description' => $project->description,
+                'card_id' => $project->id
+            ])
         @endforeach
 
         {{-- Card New Project --}}
@@ -99,22 +60,18 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mt-3 mb-3 position-relative">
                                 <label for="validationTextarea" class="form-label">Description</label>
                                 <textarea maxlength="255" oninput="atualizarContador()" rows="5" name="description"
                                     id="descricao" class="form-control @error('description') is-invalid @enderror"" id="
                                     validationTextarea" aria-describedby="inputGroupPrepend3 validationDescriptionFeedback"
                                     placeholder="Required example textarea">{{ old('description') }}</textarea>
-                                <div class="p-0 m-0"> 
-                                    @error('description')
-                                        <div id="validationDescriptionFeedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                    <div class="d-flex justify-content-end m-0 p-0">
-                                        <p class="m-0" id="contador">0 / 255</p>
+                                @error('description')
+                                    <div id="validationDescriptionFeedback" class="invalid-feedback">
+                                        {{ $message }}
                                     </div>
-                                </div>
+                                @enderror
+                                <p class="m-0 position-absolute top-0 end-0" id="contador">0 / 255</p>
                             </div>
                             <div class="d-flex align-items-center justify-content-center">
                                 <button type="submmit" class="btn btn-outline-success" data-bs-toggle="modal"
