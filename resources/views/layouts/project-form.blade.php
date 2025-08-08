@@ -16,8 +16,8 @@
                                 <span class="input-group-text" id="inputGroupPrepend3">
                                     <x-lucide-tag style="height: 18px; width: 18px;" />
                                 </span>
-                                <input name="title" type="text"
-                                    class="form-control @error('title') is-invalid @enderror" id="title"
+                                <input name="title" type="text" id="title"
+                                    class="form-control @error('title') is-invalid @enderror" 
                                     aria-describedby="inputGroupPrepend3 validationTitleFeedback"
                                     value="{{ old('title') }}">
                                 @error('title')
@@ -30,7 +30,7 @@
                         <div class="mt-3 mb-3 position-relative">
                             <label for="validationTextarea" class="form-label">Description</label>
                             <textarea maxlength="255" oninput="atualizarContador()" rows="5" name="description"
-                                id="descricao" class="form-control @error('description') is-invalid @enderror"" id="
+                                id="description" class="form-control @error('description') is-invalid @enderror"" id="
                                 validationTextarea" aria-describedby="inputGroupPrepend3 validationDescriptionFeedback"
                                 placeholder="Project details go here...">{{ old('description') }}</textarea>
                             @error('description')

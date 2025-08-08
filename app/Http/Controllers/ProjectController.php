@@ -12,7 +12,8 @@ class ProjectController extends Controller
 {
     protected ProjectService $projectService;
 
-    public function __construct(ProjectService $projectService) {
+    public function __construct(ProjectService $projectService)
+    {
         $this->projectService = $projectService;
     }
 
@@ -21,7 +22,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::where('user_id', Auth::user()->id)->get();
+        $projects = $this->projectService->index();
 
         return view('project', compact('projects'));
     }
@@ -41,13 +42,19 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        // Depois implementar o show dinamico com o js <=/=!!=/=
+        $project = Project::find($id);
+
+        if (!$project) {
+            return response()->json(['error' => 'Projeto não encontrado'], 404);
+        }
+
+        return response()->json($project);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProjectRequest $request, string $id)
     {
         //
     }
@@ -57,6 +64,6 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
 }

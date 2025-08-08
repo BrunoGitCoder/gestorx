@@ -11,7 +11,8 @@
             <div class=" card-body">
                 <div class="p-0 m-0 d-flex justify-content-around">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <button class="btn btn-outline-secondary">
+                        <button class="btn btn-outline-secondary btn-edit" data-id="{{$card_id}}" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
                             <div class="d-flex justify-content-center align-items-center gap-1">
                                 <span class="d-flex"><x-lucide-square-pen
                                         style="height: 18px; width: 18px;" /></span>Edit

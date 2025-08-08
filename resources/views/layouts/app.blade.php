@@ -19,6 +19,8 @@
     @yield('content')
 
     @include('layouts.scripts')
+
+    @yield('scripts')
 </body>
 
 </html>

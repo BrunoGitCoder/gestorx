@@ -7,7 +7,7 @@
 
     @include('layouts.search-bar')
 
-    <div class="d-flex flex-row flex-wrap gap-3 mt-4 justify-content-center align-items-center mb-5">
+    <div class="d-flex flex-row flex-wrap gap-3 justify-content-center align-items-center mb-5">
 
         {{-- Cards criados pelo usuario --}}
         @foreach($projects as $project)
@@ -41,4 +41,8 @@
             });
         </script>
     @endif
+@endsection
+
+@section('scripts')
+    @include('layouts.script-ajax')
 @endsection

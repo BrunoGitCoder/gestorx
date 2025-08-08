@@ -3,14 +3,8 @@
 @section('title_page', 'GestorX')
 
 @section('content')
-    <div class="d-flex flex-row flex-wrap gap-3 mt-4 justify-content-center align-items-center mb-5">
-        @for ($i = 1; $i <= 3; $i++)
-            @include('layouts.projectCard',[
-                'title' => 'Titulo',
-                'description' => 'Descrição',
-                'card_id' => 'CardID'
-            ])
-        @endfor
+    <div class="d-flex flex-row flex-wrap gap-3 justify-content-center align-items-center mb-5">
+       
 
         {{-- Card New Project --}}
         <div class="card border-dashed text-center shadow-sm"
