@@ -3,6 +3,7 @@
 @section('title_page', 'GestorX')
 
 @section('content')
+<h1 class="text-center py-4">Projects Board</h1>
     <div class="d-flex flex-row flex-wrap gap-3 mt-4 justify-content-center align-items-center mb-5">
         @foreach($projects as $project)
             @include('layouts.projectCard',[
@@ -13,18 +14,15 @@
         @endforeach
         {{-- Card New Project --}}
         <div class="card border-dashed text-center shadow-sm"
-            style="width: 18rem; border: 2px dashed #7a7c7d; height: 254px; max-height: 254px;">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center py-5">
-                <i class="bi bi-plus-circle fs-1 text-primary mb-3"></i>
-                <h5 class="card-title mb-2">Start a New Project</h5>
-                <p class="card-text text-muted">Kick off your task organization with a fresh project.</p>
-                <button type="button" class="btn btn-outline-primary d-flex flex-row gap-1" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <span class="d-flex justify-content-center align-items-center">
-                        <x-lucide-diamond-plus style="height: 18px; width: 18px;" />
-                    </span>
-                    <strong>New Project</strong>
-                </button>
+            style="width: 18rem; border: 2px dashed #7a7c7d;">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center py-4 gap-2">
+                <h5 class="card-title text-center">Start a New Project</h5>
+                 <p class="card-text text-center">Kick off your task organization with a fresh project.</p>
+                 <button class="btn btn-outline-primary">
+                     <div class="d-flex justify-content-center align-items-center gap-1"data-bs-toggle="modal" data-bs-target="#exampleModal">
+                         <span class="d-flex"><x-lucide-blocks style="height: 18px; width: 18px;" /></span>New Project
+                     </div>
+                 </button>
             </div>
         </div>
     </div>

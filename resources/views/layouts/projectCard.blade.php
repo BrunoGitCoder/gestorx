@@ -1,4 +1,4 @@
-<div class="card hover-scale" style="width: 18rem; max-width: 18rem;">
+<div class="card hover-scale shadow" style="width: 18rem; max-width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">{{$title}}</h5>
         <p class="card-text text-secondary">{{$description}}</p>
@@ -8,7 +8,7 @@
             </a>
         </p>
         <div class="collapse mt-3" id="collapseExample{{$card_id}}">
-            <div class="card card-body">
+            <div class=" card-body">
                 <div class="p-0 m-0 d-flex justify-content-around">
                     <button class="btn btn-outline-primary">
                         <div class="d-flex justify-content-center align-items-center gap-1">
@@ -28,19 +28,25 @@
         <a class="normal-a" data-bs-toggle="collapse" href="#collapseExample2{{$card_id}}">
             <div class="btn hover-color-secondary d-flex align-items-center justify-content-between mb-2">
                 <div class="row">
-                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col"></span>
+                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col">0</span>
                 </div>
                 <x-lucide-plus style="height: 18px; width: 18px;" />
             </div>
         </a>
         <div class="collapse mt-3" id="collapseExample2{{$card_id}}">
             <ul class="list-group">
-                {{-- <li class="list-group-item">
+                <li class="list-group-item hover-color-secondary">
                     <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                    <label class="form-check-label" for="firstCheckbox">First checkbox</label>
+                    <label class="" for="">First</label>
                     <span><x-lucide-chevron-right style="height: 18px; width: 18px;"
                             class="position-absolute top-50 end-0 translate-middle" /></span>
-                </li> --}}
+                </li>
+                <li class="list-group-item hover-color-secondary">
+                    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+                    <label class="" for="">First</label>
+                    <span><x-lucide-chevron-right style="height: 18px; width: 18px;"
+                            class="position-absolute top-50 end-0 translate-middle" /></span>
+                </li>
                 <li class="list-group-item hover-color-secondary" style="border: 2px dashed #7a7c7d;">
                     <div class="m-0 p-0 d-flex justify-content-center align-items-center gap-1">
                         <span class="d-flex"><x-lucide-list-todo style="height: 18px; width: 18px;" /></span>New Task
