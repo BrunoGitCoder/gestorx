@@ -11,7 +11,6 @@
                 'card_id' => $project->id
             ])
         @endforeach
-    </div>
         {{-- Card New Project --}}
         <div class="card border-dashed text-center shadow-sm"
             style="width: 18rem; border: 2px dashed #7a7c7d; height: 254px; max-height: 254px;">
