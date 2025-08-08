@@ -28,25 +28,24 @@
         <a class="normal-a" data-bs-toggle="collapse" href="#collapseExample2{{$card_id}}">
             <div class="btn hover-color-secondary d-flex align-items-center justify-content-between mb-2">
                 <div class="row">
-                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col">1</span>
+                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col"></span>
                 </div>
                 <x-lucide-plus style="height: 18px; width: 18px;" />
             </div>
         </a>
         <div class="collapse mt-3" id="collapseExample2{{$card_id}}">
             <ul class="list-group">
-                <li class="list-group-item">
+                {{-- <li class="list-group-item">
                     <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
                     <label class="form-check-label" for="firstCheckbox">First checkbox</label>
                     <span><x-lucide-chevron-right style="height: 18px; width: 18px;"
                             class="position-absolute top-50 end-0 translate-middle" /></span>
+                </li> --}}
+                <li class="list-group-item hover-color-secondary" style="border: 2px dashed #7a7c7d;">
+                    <div class="m-0 p-0 d-flex justify-content-center align-items-center gap-1">
+                        <span class="d-flex"><x-lucide-list-todo style="height: 18px; width: 18px;" /></span>New Task
+                    </div>
                 </li>
-            </ul>
-            <ul class="hover-color-secondary list-group mt-3" style="border: 2px dashed #7a7c7d;">
-                <p class="m-0 p-2 text-center">
-                    <span><x-lucide-list-todo style="height: 18px; width: 18px;" /></span>
-                    New Task
-                </p>   
             </ul>
         </div>
     </div>
