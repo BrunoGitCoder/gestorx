@@ -56,7 +56,8 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, string $id)
     {
-        //
+        $this->projectService->update($request, $id);
+        return redirect()->route('projects.index');
     }
 
     /**
