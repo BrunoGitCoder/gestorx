@@ -36,4 +36,10 @@ class ProjectService
             'description' => $request->input('description')
         ]);
     }
+
+    public function destroy($id)
+    {
+        $ptoject = Project::whereBelongsTo(Auth::user())->findOrFail($id);
+        $ptoject->delete();
+    }
 }

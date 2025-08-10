@@ -32,6 +32,7 @@
             contador.textContent = `${textarea.value.length} / ${textarea.maxLength}`;
         }
     </script>
+    
     @if ($errors->any())
         <script>
             document.addEventListener('DOMContentLoaded', function () {

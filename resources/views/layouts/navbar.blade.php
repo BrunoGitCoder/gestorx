@@ -15,9 +15,9 @@
         {{-- Conteúdo da navbar --}}
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('projects.index') }}">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="/equipe">Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('teams') }}">Team</a></li>
             </ul>
 
             {{-- Área de usuário e tema --}}

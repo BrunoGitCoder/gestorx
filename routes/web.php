@@ -17,4 +17,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AppController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'authLogout'])->name('auth.logout');
     Route::resource('projects', ProjectController::class);
+    Route::get('/dashboard', function () { return view('working');})->name('dashboard');
+    Route::get('/teams', function () { return view('working');})->name('teams');
 });

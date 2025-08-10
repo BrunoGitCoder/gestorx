@@ -53,3 +53,51 @@
         });
     });
 </script>
+
+<script>
+    // Para TODOS os cards na tela
+    document.querySelectorAll('.card-project').forEach((card) => {
+        const link = card.querySelector('a[data-bs-toggle="collapse"][data-status]');
+        if (!link) return;
+
+        // alvo do collapse (pode vir de href ou data-bs-target)
+        const targetSelector = link.getAttribute('data-bs-target') || link.getAttribute('href');
+        const target = targetSelector ? document.querySelector(targetSelector) : null;
+
+        // 1) Ao clicar no link, marcar como "show"
+        link.addEventListener('click', () => {
+            link.dataset.status = 'show';
+        });
+
+        // 2) Manter sincronizado com os eventos do Bootstrap (mais confiável)
+        if (target) {
+            target.addEventListener('shown.bs.collapse', () => {
+                link.dataset.status = 'show';
+            });
+            target.addEventListener('hidden.bs.collapse', () => {
+                link.dataset.status = 'hidden';
+            });
+        }
+
+        // 3) Ao sair do card com o mouse, se estiver "show", clicar para fechar
+        card.addEventListener('mouseleave', () => {
+            document.body.click();
+            if (link.dataset.status === 'show') {
+                link.click();
+                // O evento "hidden.bs.collapse" vai atualizar o data-status para "hidden"
+            }
+        });
+    });
+</script>
+
+<script>
+document.querySelectorAll('.btn-edit').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const projectId = this.dataset.id; // pega o data-id
+        const form = document.getElementById('project-form-edit');
+        
+        // Define a nova rota (ajuste conforme sua rota real)
+        form.action = "{{ route('projects.update', ':id') }}".replace(':id', projectId);
+    });
+});
+</script>

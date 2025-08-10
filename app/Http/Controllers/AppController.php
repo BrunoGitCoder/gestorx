@@ -9,7 +9,7 @@ class AppController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return redirect()->route('projects.index');
     }
 
     public function showFormLogin()
