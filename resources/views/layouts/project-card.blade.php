@@ -62,7 +62,19 @@
                     </div>
                 </li>
                 {{-- --------------------------------------------------------------------------- --}}
-                <li class="list-group-item hover-color-secondary" style="border: 2px dashed #7a7c7d;">
+                <li class="list-group-item" id="test2" style="display: none">
+                    <div class="d-flex gap-1">
+                        <input class="form-control" id="test3" type="text">
+                        <button class="btn btn-outline-primary">
+                            <div class="d-flex justify-content-center align-items-center gap-1">
+                                <span class="d-flex"><x-lucide-between-horizontal-end
+                                        style="height: 18px; width: 18px;" /></span>
+                            </div>
+                        </button>
+                    </div>
+                </li>
+                <li id="test" class="list-group-item hover-color-secondary"
+                    style="border: 2px dashed #7a7c7d; cursor: pointer;">
                     <div class="m-0 p-0 d-flex justify-content-center align-items-center gap-1">
                         <span class="d-flex"><x-lucide-list-todo style="height: 18px; width: 18px;" /></span>New Task
                     </div>
@@ -72,12 +84,17 @@
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="deleteModal{{$card_id}}" data-bs-backdrop="static" aria-labelledby="deleteModalLabel{{$card_id}}" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="deleteModal{{$card_id}}" data-bs-backdrop="static"
+    aria-labelledby="deleteModalLabel{{$card_id}}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="deleteModalLabel{{$card_id}}">Confirm Deletion</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span>
+                    <x-lucide-triangle-alert style="height: 30px; width: 30px;" />
+                </span>
+                <h5 class="modal-title ps-2" id="deleteModalLabel{{$card_id}}">Confirm Deletion</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
@@ -87,14 +104,18 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cancel
+                    <div class="d-flex justify-content-center align-items-center gap-1">
+                        <span class="d-flex"><x-lucide-ban style="height: 18px; width: 18px;" /></span>Cancel
+                    </div>
                 </button>
 
                 <form action="{{ route('projects.destroy', $card_id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
-                        Delete
+                        <div class="d-flex justify-content-center align-items-center gap-1">
+                            <span class="d-flex"><x-lucide-trash-2 style="height: 18px; width: 18px;" /></span>Delete
+                        </div>
                     </button>
                 </form>
             </div>
@@ -103,30 +124,65 @@
 </div>
 
 @if(session('success'))
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-check-square-fill text-success" viewBox="0 0 16 16">
-                        <path
-                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                    </svg>
-                    <strong class="me-auto">{{ session('user_name') }}</strong>
-                    <small>Now</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{ session('success') }}
-                </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header gap-1">
+                <x-lucide-bookmark-check class="text-success" style="height: 18px; width: 18px;" />
+                <strong class="me-auto">{{ session('user_name') }}</strong>
+                <small>Now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ session('success') }}
             </div>
         </div>
-        <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                const toastLiveExample = document.getElementById('liveToast-success');
-                if (toastLiveExample) {
-                    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                    toastBootstrap.show();
-                }
-            });
-        </script>
-    @endif
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const toastLiveExample = document.getElementById('liveToast-success');
+            if (toastLiveExample) {
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show();
+            }
+        });
+    </script>
+@endif
+
+<script>
+
+    const teste = document.getElementById('test');
+    const teste2 = document.getElementById('test2');
+    const teste3 = document.getElementById('test3');
+
+    teste.addEventListener('click', function () {
+        if (teste2.style.display === 'none') {
+            teste2.style.display = 'block';
+            teste3.focus();
+
+            const toastLiveExample = document.getElementById('liveToast-success');
+            if (toastLiveExample) {
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show();
+            }
+
+        } else {
+            teste2.style.display = 'none';
+        }
+    });
+
+</script>
+
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header gap-1">
+            <x-lucide-bookmark-check class="text-success" style="height: 18px; width: 18px;" />
+            <strong class="me-auto">{{ session('user_name') }}</strong>
+            <small>Now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            New task created successfully.
+        </div>
+    </div>
+</div>

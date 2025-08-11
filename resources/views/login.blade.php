@@ -70,14 +70,10 @@
 
     {{-- Notifications --}}
     @if(session('success'))
-        <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-check-square-fill text-success" viewBox="0 0 16 16">
-                        <path
-                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                    </svg>
+                    <x-lucide-bookmark-check class="text-success" style="height: 18px; width: 18px;" />
                     <strong class="me-auto">{{ session('user_name') }}</strong>
                     <small>Now</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -98,14 +94,10 @@
         </script>
     @endif
     @if (session('error') or $errors->any())
-        <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast-error" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-x-square-fill text-danger" viewBox="0 0 16 16">
-                        <path
-                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708" />
-                    </svg>
+                <div class="toast-header gap-2">
+                    <x-lucide-user-round-x class="text-danger" style="height: 18px; width: 18px;" />
                     <strong class="me-auto">Error</strong>
                     <small>Now</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
