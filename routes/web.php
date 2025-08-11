@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,7 +17,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [AppController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'authLogout'])->name('auth.logout');
-    Route::resource('projects', ProjectController::class);
     Route::get('/dashboard', function () { return view('working');})->name('dashboard');
     Route::get('/teams', function () { return view('working');})->name('teams');
+    Route::resource('projects', ProjectController::class);
+    Route::resource('tasks', TaskController::class)->only([
+        'store', 'destroy'
+    ]);
 });

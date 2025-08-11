@@ -10,7 +10,7 @@ class ProjectService
 {
     public function index()
     {
-        return Project::whereBelongsTo(Auth::user())->orderBy('id', 'asc')->get();
+        return Project::whereBelongsTo(Auth::user())->orderBy('id', 'asc')->with('tasks')->get();
     }
 
     public function store(ProjectRequest $request)

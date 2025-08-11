@@ -22,6 +22,8 @@ class TaskController extends Controller
             'project_id' => $request->input('project_id'),
             'description' => $request->input('description')
         ]);
+
+        return back()->with('success','Task created successfully.');
     }
 
     /**

@@ -35,7 +35,7 @@
         <a class="normal-a" data-bs-toggle="collapse" href="#collapseExample2{{$card_id}}">
             <div class="btn hover-color-secondary d-flex align-items-center justify-content-between mb-2">
                 <div class="row">
-                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col">0</span>
+                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col">{{ $project->tasks->count() }}</span>
                 </div>
                 <x-lucide-plus style="height: 18px; width: 18px;" />
             </div>
@@ -43,35 +43,44 @@
         <div class="collapse mt-3" id="collapseExample2{{$card_id}}">
             <ul class="list-group">
                 {{-- implementar bacno de dados depois em um novo layout --}}
-                <li class="list-group-item hover-color-secondary dropend">
-                    <input style="cursor: pointer;" class="form-check-input me-1" type="checkbox" value=""
-                        id="firstCheckbox">
-                    <label>First</label>
-                    <button type="button" class="btn2 p-1 hover-color-secondary" id="btn-task_id"
-                        style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%);" 0
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><x-lucide-chevron-right style="height: 18px; width: 18px;" class="" /></span>
-                    </button>
-                    <div class="dropdown-menu p-2" style="z-index: 10" id="task-opc">
-                        <button class="btn btn-outline-secondary" style="width: 100%;">
-                            <span><x-lucide-square-pen style="height: 18px; width: 18px;" /></span>Edit
-                        </button>
-                        <button class="btn btn-outline-danger mt-2" style="width: 100%;">
-                            <span><x-lucide-trash style="height: 18px; width: 18px;" /></span>Delete
-                        </button>
-                    </div>
-                </li>
+                @if ($project->tasks->isNotEmpty())
+                    @foreach ($project->tasks as $task)
+                        <li class="list-group-item hover-color-secondary dropend">
+                            <input style="cursor: pointer;" class="form-check-input me-1" type="checkbox" value=""
+                                id="firstCheckbox">
+                            <label>{{ $task->description }}</label>
+                            <button type="button" class="btn2 p-1 hover-color-secondary" id="btn-task_id"
+                                style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%);" 0
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span><x-lucide-chevron-right style="height: 18px; width: 18px;" class="" /></span>
+                            </button>
+                            <div class="dropdown-menu p-2" style="z-index: 10" id="task-opc">
+                                <button class="btn btn-outline-secondary" style="width: 100%;">
+                                    <span><x-lucide-square-pen style="height: 18px; width: 18px;" /></span>Edit
+                                </button>
+                                <button class="btn btn-outline-danger mt-2" style="width: 100%;">
+                                    <span><x-lucide-trash style="height: 18px; width: 18px;" /></span>Delete
+                                </button>
+                            </div>
+                        </li>
+                    @endforeach
+                @endif
+
                 {{-- --------------------------------------------------------------------------- --}}
                 <li class="list-group-item" id="test2" style="display: none">
-                    <div class="d-flex gap-1">
-                        <input class="form-control" id="test3" type="text">
-                        <button class="btn btn-outline-primary">
-                            <div class="d-flex justify-content-center align-items-center gap-1">
-                                <span class="d-flex"><x-lucide-between-horizontal-end
-                                        style="height: 18px; width: 18px;" /></span>
-                            </div>
-                        </button>
-                    </div>
+                    <form action="{{ route('tasks.store') }}" method="POST">
+                        @csrf
+                        <div class="d-flex gap-1">
+                            <input type="hidden" value="{{ $card_id }}" name="project_id">
+                            <input class="form-control" id="test3" type="text" name="description">
+                            <button class="btn btn-outline-primary" type="submit">
+                                <div class="d-flex justify-content-center align-items-center gap-1">
+                                    <span class="d-flex"><x-lucide-between-horizontal-end
+                                            style="height: 18px; width: 18px;" /></span>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
                 </li>
                 <li id="test" class="list-group-item hover-color-secondary"
                     style="border: 2px dashed #7a7c7d; cursor: pointer;">
@@ -158,13 +167,6 @@
         if (teste2.style.display === 'none') {
             teste2.style.display = 'block';
             teste3.focus();
-
-            const toastLiveExample = document.getElementById('liveToast-success');
-            if (toastLiveExample) {
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                toastBootstrap.show();
-            }
-
         } else {
             teste2.style.display = 'none';
         }
