@@ -67,12 +67,12 @@
                 @endif
 
                 {{-- --------------------------------------------------------------------------- --}}
-                <li class="list-group-item" id="test2" style="display: none">
+                <li class="list-group-item" id="task-{{ $card_id }}" style="display: none">
                     <form action="{{ route('tasks.store') }}" method="POST">
                         @csrf
                         <div class="d-flex gap-1">
                             <input type="hidden" value="{{ $card_id }}" name="project_id">
-                            <input class="form-control" id="test3" type="text" name="description">
+                            <input class="form-control" id="desc-task-{{ $card_id }}" type="text" name="description">
                             <button class="btn btn-outline-primary" type="submit">
                                 <div class="d-flex justify-content-center align-items-center gap-1">
                                     <span class="d-flex"><x-lucide-between-horizontal-end
@@ -82,7 +82,7 @@
                         </div>
                     </form>
                 </li>
-                <li id="test" class="list-group-item hover-color-secondary"
+                <li id="new-tesk-project-{{ $card_id }}" class="list-group-item hover-color-secondary"
                     style="border: 2px dashed #7a7c7d; cursor: pointer;">
                     <div class="m-0 p-0 d-flex justify-content-center align-items-center gap-1">
                         <span class="d-flex"><x-lucide-list-todo style="height: 18px; width: 18px;" /></span>New Task
@@ -159,8 +159,8 @@
 
 <script>
 
-    const teste = document.getElementById('test');
-    const teste2 = document.getElementById('test2');
+    const teste = document.getElementById('new-tesk-project-{{ $card_id }}');
+    const teste2 = document.getElementById('task-{{ $card_id }}');
     const teste3 = document.getElementById('test3');
 
     teste.addEventListener('click', function () {
