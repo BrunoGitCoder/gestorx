@@ -17,10 +17,13 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [AppController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'authLogout'])->name('auth.logout');
-    Route::get('/dashboard', function () { return view('working');})->name('dashboard');
-    Route::get('/teams', function () { return view('working');})->name('teams');
+    Route::get('/dashboard', function () {
+        return view('working'); })->name('dashboard');
+    Route::get('/teams', function () {
+        return view('working'); })->name('teams');
     Route::resource('projects', ProjectController::class);
     Route::resource('tasks', TaskController::class)->only([
-        'store', 'destroy'
+        'store',
+        'destroy'
     ]);
 });

@@ -101,3 +101,24 @@ document.querySelectorAll('.btn-edit').forEach(function(button) {
     });
 });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const newTaskTriggers = document.querySelectorAll('.new-task-trigger');
+
+        newTaskTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function () {
+                const cardId = this.dataset.cardId;
+                const taskInput = document.querySelector(`.task-input[data-card-id="${cardId}"]`);
+                const taskDesc = taskInput.querySelector('.task-desc');
+
+                if (taskInput.style.display === 'none' || taskInput.style.display === '') {
+                    taskInput.style.display = 'block';
+                    taskDesc.focus();
+                } else {
+                    taskInput.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>

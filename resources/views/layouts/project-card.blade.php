@@ -35,7 +35,8 @@
         <a class="normal-a" data-bs-toggle="collapse" href="#collapseExample2{{$card_id}}">
             <div class="btn hover-color-secondary d-flex align-items-center justify-content-between mb-2">
                 <div class="row">
-                    <h6 class="card-title col m-0">Tasks</h6><span class="badge text-bg-secondary col">{{ $project->tasks->count() }}</span>
+                    <h6 class="card-title col m-0">Tasks</h6><span
+                        class="badge text-bg-secondary col">{{ $project->tasks->count() }}</span>
                 </div>
                 <x-lucide-plus style="height: 18px; width: 18px;" />
             </div>
@@ -67,27 +68,30 @@
                 @endif
 
                 {{-- --------------------------------------------------------------------------- --}}
-                <li class="list-group-item" id="task-{{ $card_id }}" style="display: none">
-                    <form action="{{ route('tasks.store') }}" method="POST">
+                <li class="list-group-item task-input" data-card-id="{{ $card_id }}" style="display: none">
+                    <form action="{{ route('tasks.store') }}" method="POST" class="m-0">
                         @csrf
-                        <div class="d-flex gap-1">
+                        <div class="d-flex gap-1 my-0">
                             <input type="hidden" value="{{ $card_id }}" name="project_id">
-                            <input class="form-control" id="desc-task-{{ $card_id }}" type="text" name="description">
+                            <input class="form-control task-desc my-0" type="text" name="description">
                             <button class="btn btn-outline-primary" type="submit">
                                 <div class="d-flex justify-content-center align-items-center gap-1">
-                                    <span class="d-flex"><x-lucide-between-horizontal-end
-                                            style="height: 18px; width: 18px;" /></span>
+                                    <span class="d-flex">
+                                        <x-lucide-between-horizontal-end style="height: 18px; width: 18px;" />
+                                    </span>
                                 </div>
                             </button>
                         </div>
                     </form>
                 </li>
-                <li id="new-tesk-project-{{ $card_id }}" class="list-group-item hover-color-secondary"
+
+                <li class="list-group-item new-task-trigger hover-color-secondary" data-card-id="{{ $card_id }}"
                     style="border: 2px dashed #7a7c7d; cursor: pointer;">
                     <div class="m-0 p-0 d-flex justify-content-center align-items-center gap-1">
                         <span class="d-flex"><x-lucide-list-todo style="height: 18px; width: 18px;" /></span>New Task
                     </div>
                 </li>
+
             </ul>
         </div>
     </div>
@@ -128,63 +132,6 @@
                     </button>
                 </form>
             </div>
-        </div>
-    </div>
-</div>
-
-@if(session('success'))
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header gap-1">
-                <x-lucide-bookmark-check class="text-success" style="height: 18px; width: 18px;" />
-                <strong class="me-auto">{{ session('user_name') }}</strong>
-                <small>Now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                {{ session('success') }}
-            </div>
-        </div>
-    </div>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const toastLiveExample = document.getElementById('liveToast-success');
-            if (toastLiveExample) {
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-                toastBootstrap.show();
-            }
-        });
-    </script>
-@endif
-
-<script>
-
-    const teste = document.getElementById('new-tesk-project-{{ $card_id }}');
-    const teste2 = document.getElementById('task-{{ $card_id }}');
-    const teste3 = document.getElementById('test3');
-
-    teste.addEventListener('click', function () {
-        if (teste2.style.display === 'none') {
-            teste2.style.display = 'block';
-            teste3.focus();
-        } else {
-            teste2.style.display = 'none';
-        }
-    });
-
-</script>
-
-
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="liveToast-success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header gap-1">
-            <x-lucide-bookmark-check class="text-success" style="height: 18px; width: 18px;" />
-            <strong class="me-auto">{{ session('user_name') }}</strong>
-            <small>Now</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            New task created successfully.
         </div>
     </div>
 </div>
